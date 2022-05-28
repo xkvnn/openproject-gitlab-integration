@@ -35,8 +35,8 @@ module OpenProject::GitlabIntegration
       include OpenProject::GitlabIntegration::NotificationHandler::Helper
       
       def process(payload_params)
-        update_status_on_new_mr = false # true if you only reference one merge by work_package, else false.
-        update_status_on_merged = false # true if you only reference one merge by work_package, else false.
+        update_status_on_new_mr = true # true if you only reference one merge by work_package, else false.
+        update_status_on_merged = true # true if you only reference one merge by work_package, else false.
         wp_status_id_on_new_mr = 7 # the id of the status.
         wp_status_id_on_merged = 8 # the id of the status.
 
