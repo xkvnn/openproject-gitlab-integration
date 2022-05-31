@@ -82,7 +82,17 @@ export class GitActionsService {
 
   public branchName(workPackage:WorkPackageResource):string {
     const { type, id, title } = this.formattingInput(workPackage);
-    return `${this.sanitizeBranchString(type)}/${id}-${this.sanitizeBranchString(title)}`.toLocaleLowerCase();
+
+    let branchType = this.sanitizeBranchString(type).toLocaleLowerCase();
+    if (branchType === 'plugin-optimize') {
+        branchType = 'optimize';
+    } else if (branchType === 'plugin-bug') {
+        branchType = 'bug';
+    } else if (branchType === 'plugin-feature') {
+        branchType = 'feature';
+    }
+
+    return `${branchType}/${id}-${this.sanitizeBranchString(title)}`.toLocaleLowerCase();
   }
 
   public commitMessage(workPackage:WorkPackageResource):string {
